@@ -4,6 +4,14 @@ This repository accompanies the following video on YouTube: https://youtu.be/1bC
 
 Direct link to the demo part: https://youtu.be/1bC-fZEFodU?t=756
 
+You need an Azure subscription and the following resources:
+- Azure Container Registry (ACR): to store the container image and Helm chart
+- Azure Kubernetes Services (AKS): to deploy the app to qa and prod namespaces
+    - do not deploy a private cluster; we will use MS hosted build agents that need to talk to the K8S API server via a public endpoint
+    - cluster can be AAD integrated: pipeline contains comments to use kubelogin when you do not want to use --admin to obtain admin credentials to the cluster
+- service principal in Azure AD: used to authenticate to Azure and obtain a kube config file to access the AKS cluster; make sure the service principal has the required Azure role (e.g., Contributor)
+- AKS service principal (or managed identity) has AcrPull to ACR (if you used the portal and selected or created your container registry you should be good)
+
 variables in ci pipeline:
 - registryLogin: admin login to Azure Container Registry (ACR)
 - registryName: azurecr.io will be appended to this variable to obtain the FQDN to ACR
