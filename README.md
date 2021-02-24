@@ -38,7 +38,7 @@ variables in ./common/cd-vars.yaml:
 # what you need to do
 
 - create a project in Azure Devops
-- import this repository
+- import this repository (or use GitHub for the repo, that's fine too)
 - add the CI pipeline and use ci.yaml as the source
 - add CI pipeline variables (see above)
 - set the values of the CI pipeline variables and variables in ./common/ci-vars.yaml to your ACR, AKS, etc...
